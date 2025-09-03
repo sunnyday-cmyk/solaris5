@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ソラリス思想 | 困難は影。あなたは光。</title>
+  <meta name="description" content="ソラリス思想は、困難にとらわれず自分のために生きるための無料の思想・コミュニティです。" />
+  <meta property="og:title" content="ソラリス思想 | 困難は影。あなたは光。" />
+  <meta property="og:description" content="困難は影。あなたは光。自分のために生きる、現代のための哲学。" />
+  <meta name="theme-color" content="#000000" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0a0a0a; /* 黒に近い背景 */
+      --gold:#ffd166; /* ゴールド */
+      --sun:#ff8c42;  /* 太陽オレンジ */
+      --text:#f5f5f5; /* 文字色 */
+      --muted:#bbbbbb; /* 補助テキスト */
+      --accent:#ff4d00; /* 強いアクセント */
+      --maxw:1100px;
+      --radius:20px;
+      --shadow:0 10px 30px rgba(0,0,0,.4);
+    }
+    /* ベース */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:'Noto Sans JP', system-ui, -apple-system, sans-serif;
+      color:var(--text);
+      background:radial-gradient(1200px 800px at 50% -10%, rgba(255,140,66,.12), transparent 60%),
+                 radial-gradient(900px 600px at 80% 10%, rgba(255,209,102,.08), transparent 60%),
+                 #000; /* 宇宙感 */
+      overflow-x:hidden;
+      letter-spacing:.02em;
+    }
+    a{color:var(--gold);text-decoration:none}
+    img{max-width:100%;display:block}
+
+    /* グローナビ */
+    .nav{
+      position:fixed; inset:0 0 auto 0; height:64px; display:flex; align-items:center; justify-content:center;
+      background:rgba(0,0,0,.6); backdrop-filter: blur(8px); z-index:50; border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .nav-inner{width:100%; max-width:var(--maxw); display:flex; align-items:center; justify-content:space-between; padding:0 16px}
+    .brand{display:flex; align-items:center; gap:12px; font-weight:900}
+    .brand .mark{width:28px; height:28px; position:relative}
+    .brand .mark::before{content:""; position:absolute; inset:0; border-radius:50%; background:radial-gradient(circle at 40% 40%, var(--sun), #ffb067 40%, rgba(255,255,255,.12) 41%, transparent 42%), radial-gradient(circle at 50% 50%, rgba(255,140,66,.45), transparent 60%);} 
+    .brand span{font-weight:900; letter-spacing:.06em}
+    .nav a{color:var(--text); opacity:.9}
+    .menu{display:flex; gap:18px}
+    .cta{
+      padding:10px 16px; border-radius:999px; background:linear-gradient(90deg, var(--sun), var(--gold)); color:#000; font-weight:900;
+      box-shadow:0 0 24px rgba(255,140,66,.35), inset 0 0 8px rgba(255,255,255,.35);
+    }
+
+    /* ヒーロー */
+    .hero{position:relative; min-height:100svh; display:grid; place-items:center; text-align:center; padding:96px 16px 64px}
+    .sun-bg{position:absolute; inset:-30vh -30vw -30vh -30vw; z-index:-2; background:radial-gradient(circle at 50% 40%, rgba(255,140,66,.25), transparent 40%), radial-gradient(circle at 50% 50%, rgba(255,77,0,.18), transparent 55%)}
+    .sun{position:absolute; width:min(70vmin,720px); height:min(70vmin,720px); border-radius:50%; z-index:-1; filter:blur(0.2px);
+         background:radial-gradient(circle at 42% 38%, #fff 0%, var(--gold) 7%, var(--sun) 18%, #ff5a1f 42%, rgba(255,90,31,.75) 55%, rgba(255,90,31,.25) 70%, transparent 72%);
+         box-shadow:0 0 120px rgba(255,120,40,.35), 0 0 240px rgba(255,120,40,.25);
+         animation: pulse 6s ease-in-out infinite;
+    }
+    @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
+    .hero h1{font-size:clamp(28px, 6vw, 64px); margin:0 0 12px; font-weight:900; text-shadow:0 4px 24px rgba(0,0,0,.5)}
+    .hero p.lead{font-size:clamp(16px,2.6vw,24px); margin:0 0 28px; color:var(--muted)}
+    .hero .buttons{display:flex; gap:12px; justify-content:center; flex-wrap:wrap}
+    .btn{display:inline-flex; align-items:center; justify-content:center; gap:.6em; padding:14px 20px; border-radius:999px; font-weight:800; border:1px solid rgba(255,255,255,.15)}
+    .btn.primary{background:linear-gradient(90deg, var(--accent), var(--gold)); color:#111; box-shadow:0 10px 30px rgba(255,77,0,.35)}
+    .btn.ghost{background:rgba(255,255,255,.03); color:var(--text)}
+
+    /* セクション共通 */
+    section{padding:96px 16px}
+    .container{max-width:var(--maxw); margin:0 auto}
+    .section-title{font-size:clamp(22px,3.5vw,36px); font-weight:900; margin:0 0 18px}
+    .section-sub{color:var(--muted); margin:0 0 32px}
+
+    /* 3カラム特徴 */
+    .grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+    @media (max-width:900px){.grid-3{grid-template-columns:1fr}}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.12); border-radius:var(--radius); padding:22px; box-shadow:var(--shadow)}
+    .card h3{margin:0 0 8px; font-size:20px}
+    .card p{margin:0; color:var(--muted)}
+
+    /* 教義リング */
+    .creed{position:relative; display:grid; place-items:center; overflow:hidden}
+    .ring{
+      width:min(90vw,720px); aspect-ratio:1/1; border-radius:50%; position:relative; border:1px dashed rgba(255,255,255,.15);
+      box-shadow:inset 0 0 80px rgba(255,140,66,.08);
+    }
+    .creed-item{position:absolute; width:48%; padding:16px; border-radius:16px; background:rgba(0,0,0,.4); border:1px solid rgba(255,255,255,.15); box-shadow:0 8px 24px rgba(0,0,0,.35)}
+    .creed-item h4{margin:.2em 0 .3em; font-size:18px}
+    .creed-item p{margin:0; color:var(--muted); font-size:14px}
+    .i1{top:-4%; left:26%}
+    .i2{top:20%; right:-2%}
+    .i3{bottom:20%; right:-2%}
+    .i4{bottom:-4%; left:26%}
+    .i5{top:20%; left:-2%}
+    @media (max-width:900px){
+      .creed-item{position:static; width:100%; margin:8px 0}
+      .ring{border:none; box-shadow:none}
+    }
+
+    /* 実践ガイド */
+    .steps{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+    @media (max-width:900px){.steps{grid-template-columns:1fr}}
+    .step{padding:22px; border-radius:var(--radius); background:linear-gradient(180deg, rgba(255,140,66,.08), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.15)}
+    .step .num{display:inline-block; font-weight:900; margin-bottom:8px; padding:6px 12px; border-radius:999px; border:1px solid rgba(255,255,255,.2)}
+
+    /* コミュニティ */
+    .cta-panel{display:flex; flex-direction:column; align-items:center; text-align:center; gap:16px; padding:32px; border-radius:var(--radius); border:1px solid rgba(255,255,255,.15); background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02))}
+
+    /* フッター */
+    footer{padding:48px 16px; border-top:1px solid rgba(255,255,255,.12); color:var(--muted)}
+    .note{font-size:12px; opacity:.85}
+
+    /* スクロール・リビール */
+    .reveal{opacity:0; transform:translateY(12px); transition:opacity .8s ease, transform .8s ease}
+    .reveal.show{opacity:1; transform:none}
+  </style>
+</head>
+<body>
+  <!-- ナビゲーション -->
+  <nav class="nav" aria-label="グローバルナビゲーション">
+    <div class="nav-inner">
+      <a class="brand" href="#top" aria-label="ソラリス思想 トップへ">
+        <span class="mark" aria-hidden="true"></span>
+        <span>ソラリス思想</span>
+      </a>
+      <div class="menu">
+        <a href="#about">思想</a>
+        <a href="#creed">教義</a>
+        <a href="#practice">実践</a>
+        <a href="#community" class="cta">今すぐ始める</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ヒーロー -->
+  <header id="top" class="hero" role="banner">
+    <div class="sun-bg" aria-hidden="true"></div>
+    <div class="sun" aria-hidden="true"></div>
+    <h1 class="reveal" style="transition-delay:.1s">困難は影。あなたは光。</h1>
+    <p class="lead reveal" style="transition-delay:.25s">自分のために生きる――ソラリスは、現代のための無料の哲学コミュニティです。</p>
+    <div class="buttons reveal" style="transition-delay:.35s">
+      <a class="btn primary" href="#about" aria-label="思想を知る">思想を知る</a>
+      <a class="btn ghost" href="#practice" aria-label="今すぐ実践する">今すぐ実践する</a>
+    </div>
+  </header>
+
+  <!-- ソラリスとは -->
+  <section id="about" aria-labelledby="about-title">
+    <div class="container">
+      <h2 id="about-title" class="section-title reveal">ソラリスとは？</h2>
+      <p class="section-sub reveal" style="max-width:800px">「ソラリス」はラテン語で「太陽の」。太陽のように、誰の許可も要らずに自ら輝く――その姿を生き方の指針にします。困難は一時の影。本質のあなたは、いつでも光です。</p>
+
+      <div class="grid-3">
+        <div class="card reveal">
+          <h3>自分軸</h3>
+          <p>他人の期待より、自分の価値。選ぶ主体を取り戻す。</p>
+        </div>
+        <div class="card reveal" style="transition-delay:.05s">
+          <h3>心の自由</h3>
+          <p>出来事は選べない。意味づけは選べる。視点を変え、軽く生きる。</p>
+        </div>
+        <div class="card reveal" style="transition-delay:.1s">
+          <h3>今日を楽しむ</h3>
+          <p>幸福は行き先ではなく、いま行う選択の質から生まれる。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 教義（リングレイアウト） -->
+  <section id="creed" class="creed" aria-labelledby="creed-title">
+    <div class="container" style="text-align:center">
+      <h2 id="creed-title" class="section-title reveal">ソラリスの信条</h2>
+      <p class="section-sub reveal">短く、実装可能で、強い。迷ったらこの5つに戻る。</p>
+      <div class="ring">
+        <article class="creed-item i1 reveal">
+          <h4>1. 人生は自分のためにある</h4>
+          <p>他人の期待に生きない。自分の基準で選ぶ。</p>
+        </article>
+        <article class="creed-item i2 reveal">
+          <h4>2. 困難は影であり本質ではない</h4>
+          <p>事実と解釈を分ける。影に名前を与えない。</p>
+        </article>
+        <article class="creed-item i3 reveal">
+          <h4>3. 幸せはシンプルな選択から</h4>
+          <p>減らす、捨てる、整える。軽いほど遠くへ行ける。</p>
+        </article>
+        <article class="creed-item i4 reveal">
+          <h4>4. 自分を大切にする</h4>
+          <p>セルフケアは利己ではない。世界への最初の善意だ。</p>
+        </article>
+        <article class="creed-item i5 reveal">
+          <h4>5. 今日を楽しむ</h4>
+          <p>結果よりプロセス。小さな歓びを毎日灯す。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 実践ガイド -->
+  <section id="practice" aria-labelledby="practice-title">
+    <div class="container">
+      <h2 id="practice-title" class="section-title reveal">今日からの実践</h2>
+      <p class="section-sub reveal">無料・強制なし・いつでもやめられる。小さく始め、大きく変える。</p>
+      <div class="steps">
+        <div class="step reveal">
+          <div class="num">STEP 1</div>
+          <h3>朝、空を見る</h3>
+          <p>30秒でいい。深呼吸して、今日の自分に一言を贈る。</p>
+        </div>
+        <div class="step reveal" style="transition-delay:.05s">
+          <div class="num">STEP 2</div>
+          <h3>ひとつだけ「自分のための選択」</h3>
+          <p>食事・仕事・人間関係。小さくても主語を自分に。</p>
+        </div>
+        <div class="step reveal" style="transition-delay:.1s">
+          <div class="num">STEP 3</div>
+          <h3>夜、感謝を3つ書く</h3>
+          <p>良かったことを3つ。影より光に焦点を合わせる訓練。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- コミュニティ招待 -->
+  <section id="community" aria-labelledby="community-title">
+    <div class="container">
+      <h2 id="community-title" class="section-title reveal">仲間とつながる</h2>
+      <p class="section-sub reveal">課金なし、寄付なし、退会自由。安心して参加できます。</p>
+      <div class="cta-panel reveal" role="region" aria-label="参加方法">
+        <p style="margin:0">まずは小さく始めて、合うなら続けてください。</p>
+        <div class="buttons">
+          <a class="btn primary" href="https://sunnyday-cmyk.github.io/gaijiban2/" aria-label="コミュニティに参加">コミュニティに参加</a>
+          <a class="btn ghost" href="https://docs.google.com/presentation/d/1UcqGDPIHA2SuLQuZMvHmWx787Mhjt-ziKFBjVoA-IV4/edit?usp=sharing" aria-label="ガイドをダウンロード">スターターガイド（無料PDF）</a>
+        </div>
+        <small class="note">※ プライバシーを尊重します。個人情報の収集は最小限です。</small>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div style="display:flex; gap:12px; align-items:center; margin-bottom:12px">
+        <span class="brand"><span class="mark" aria-hidden="true"></span><span>ソラリス思想</span></span>
+      </div>
+      <div class="note">
+        <p>本サイトは非営利・完全無料の思想プロジェクトです。寄付や課金は行いません。参加は自由で、いつでも離脱できます。</p>
+        <p>© <span id="year"></span> Solaris Philosophy. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // 年度自動
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // スクロール・リビール
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target); } });
+    }, {threshold: .12});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+    // スムーススクロール
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const id = a.getAttribute('href');
+        if(id.length>1){ e.preventDefault(); document.querySelector(id)?.scrollIntoView({behavior:'smooth'}); }
+      });
+    });
+  </script>
+</body>
+</html>
